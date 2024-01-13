@@ -21,53 +21,67 @@ import time
 ##################################################################
 cores = {
     "limpar": "\033[m",
-    "branco": "\033[0;30m",
+    "branco": "\033[1;30m",
     "vermelho": "\033[1;31m",
-    "verde": "\033[0;32m",
-    "amarelo": "\033[0;33m",
+    "verde": "\033[1;32m",
+    "amarelo": "\033[1;33m",
     "azul": "\033[1;34m",
-    "magenta": "\033[0;35m",
-    "ciano": "\033[0;36m",
-    "cinza": "\033[0;34m",
+    "magenta": "\033[1;35m",
+    "ciano": "\033[1;36m",
+    "cinza": "\033[1;34m",
 }
 
 ##################################################################
 # Classes e Funções
 ##################################################################
-def logo():
-    os.system('cls' or 'clear')
-    print(f'''                                                     
-{cores['azul']}                           ,,    ,,                                                    
-{cores['azul']}`7MMM.     ,MMF'           db  `7MM  {cores['vermelho']}     .M"""bgd                                     {cores['limpar']}
-{cores['azul']}  MMMb    dPMM                   MM  {cores['vermelho']}    ,MI    "Y                                     
-{cores['azul']}  M YM   ,M MM   ,6"Yb.  `7MM    MM  {cores['vermelho']}    `MMb.   `7MMpdMAo.  ,6"Yb.  `7MMpMMMb.pMMMb.  
-{cores['azul']}  M  Mb  M' MM  8)   MM    MM    MM  {cores['vermelho']}      `YMMNq. MM   `Wb 8)   MM    MM    MM    MM  
-{cores['azul']}  M  YM.P'  MM   ,pm9MM    MM    MM  {cores['vermelho']}    .     `MM MM    M8  ,pm9MM    MM    MM    MM  
-{cores['azul']}  M  `YM'   MM  8M   MM    MM    MM  {cores['vermelho']}    Mb     dM MM   ,AP 8M   MM    MM    MM    MM  
-{cores['azul']}.JML. `'  .JMML.`Moo9^Yo..JMML..JMML.{cores['vermelho']}   P"Ybmmd"  MMbmmd'  `Moo9^Yo..JMML  JMML  JMML.
-{cores['azul']}                                     {cores['vermelho']}              MM                                  
-{cores['amarelo']}by github.com/AlldDev        {cores['vermelho']}                    .JMML.                                
-{cores['limpar']}''')
-
 def menu():
-    print(f'''
+    os.system('clear')
+    print(f'''{cores['azul']}
+888b     d888          d8b 888
+8888b   d8888          Y8P 888
+88888b.d88888              888
+888Y88888P888  8888b.  888 888
+888 Y888P 888     "88b 888 888
+888  Y8P  888 .d888888 888 888
+888   "   888 888  888 888 888
+888       888 "Y888888 888 888
+{cores['vermelho']}
+8888888b.  888      d8b          888      d8b
+888   Y88b 888      Y8P          888      Y8P
+888    888 888                   888
+888   d88P 88888b.  888 .d8888b  88888b.  888 88888b.   .d88b.
+8888888P"  888 "88b 888 88K      888 "88b 888 888 "88b d88P"88b
+888        888  888 888 "Y8888b. 888  888 888 888  888 888  888
+888        888  888 888      X88 888  888 888 888  888 Y88b 888
+888        888  888 888  88888P' 888  888 888 888  888  "Y88888
+                                                            888
+{cores['amarelo']}by github.com/AlldDev{cores['vermelho']}                                  Y8b d88P
+                                                        "Y88P"{cores['limpar']}
 Select from the menu:
     1) Alvo Unico
-    2) Vários Alvos
+    2) Múltiplos Alvos
     3) Help
    99) Sair
 ''')
 
-def enviar_email(email_vitima, title_email, path_body_email, server_smtp, login_smtp, passwd_smtp):
-    print(f'Enviando spam para a vítima {email_vitima} aguarde...')
+
+
+def enviar_email(email_vitima, fake_remetente,title_email, path_body_email, server_smtp, login_smtp, passwd_smtp):
+    print(f'''{cores['azul']}Enviando phishing para a vítima {email_vitima} aguarde...{cores['limpar']}''')
     try:
+        if fake_remetente == None:
+            fake_remetente = email_vitima
+        else:
+            pass
+
+
         with open(path_body_email, 'rb') as file:
             file = file.read()
             body_email = file.decode()
 
         msg = MIMEMultipart()
         msg['Subject'] = title_email
-        msg['From'] = email_vitima
+        msg['From'] = fake_remetente
         msg['To'] = email_vitima
 
         body_email = MIMEText(body_email, 'html', 'utf-8')
@@ -78,16 +92,15 @@ def enviar_email(email_vitima, title_email, path_body_email, server_smtp, login_
 
         smtp.login(login_smtp, passwd_smtp)
         smtp.sendmail(login_smtp, email_vitima, msg.as_string())
-        print(f'Spam enviado com sucesso para {email_vitima}')
+        print(f'''{cores['verde']}Phishing enviado com sucesso para {email_vitima}!{cores['limpar']}''')
     except:
-        print(f'Falha ao enviar Spam para {email_vitima}!')
+        print(f'''{cores['vermelho']}Falha ao enviar Phishing para {email_vitima}!{cores['limpar']}''')
 
 ##################################################################
 # Main / Principal
 ##################################################################
 if __name__ == "__main__":
-    #logo()
-    #menu()
+
 
 ##################################################################
 # LOOP Principal
@@ -96,9 +109,8 @@ if __name__ == "__main__":
         # LOOP DO MENU
         while True:
             try:
-                logo()
                 menu()
-                entry = int(input('select> '))
+                entry = int(input(f'''{cores['ciano']}select> {cores['limpar']}'''))
                 break
             except:
                 pass
@@ -106,20 +118,41 @@ if __name__ == "__main__":
         while True:
             match entry:
                 case 1: # ALVO UNICO
-                    email_vitima = input('email da vítima> ')
-                    title_email = input('título do email> ')
-                    path_body_email = input('caminho do arquivo/corpo da mensagem> ')
-                    server_smtp = input('servidor smtp (ex:mail.server.com:587)> ')
-                    login_smtp = input('login do email smtp> ')
-                    passwd_smtp = input('senha do smtp> ')
-                    enviar_email(email_vitima, title_email, path_body_email, server_smtp, login_smtp, passwd_smtp)
-                    print('Voltando para o menu em 10 segundos')
+                    email_vitima = input(f'''{cores['ciano']}email vítima> {cores['limpar']}''')
+                    fake_remetente = input(f'''{cores['ciano']}email remetente ({cores['vermelho']}fake{cores['ciano']})> {cores['limpar']}''')
+                    title_email = input(f'''{cores['ciano']}título do email> {cores['limpar']}''')
+                    path_body_email = input(f'''{cores['ciano']}caminho da mensagem ({cores['vermelho']}.txt{cores['ciano']})> {cores['limpar']}''')
+                    server_smtp = input(f'''{cores['ciano']}servidor smtp ({cores['vermelho']}ex:mail.server.com:587{cores['ciano']})> {cores['limpar']}''')
+                    login_smtp = input(f'''{cores['ciano']}login do smtp> {cores['limpar']}''')
+                    passwd_smtp = input(f'''{cores['ciano']}senha do smtp> {cores['limpar']}''')
+
+                    enviar_email(email_vitima, fake_remetente, title_email, path_body_email, server_smtp, login_smtp, passwd_smtp)
+                    print(f'''{cores['amarelo']}Voltando para o menu em 10 segundos!{cores['amarelo']}''')
                     time.sleep(10)
                     break
                 case 2: # MULTIPLOS ALVOS
-                    pass
+                    path_emails = input(f'''{cores['ciano']}lista de emails ({cores['vermelho']}.txt{cores['ciano']})> {cores['limpar']}''')
+
+                    with open(path_emails, 'r') as file:
+                        file = file.read()
+                        emails = file.replace('\n', '').split(';')
+
+                    fake_remetente = input(f'''{cores['ciano']}email remetente ({cores['vermelho']}fake{cores['ciano']})> {cores['limpar']}''')
+                    title_email = input(f'''{cores['ciano']}título do email> {cores['limpar']}''')
+                    path_body_email = input(f'''{cores['ciano']}caminho da mensagem ({cores['vermelho']}.txt{cores['ciano']})> {cores['limpar']}''')
+                    server_smtp = input(f'''{cores['ciano']}servidor smtp ({cores['vermelho']}ex:mail.server.com:587{cores['ciano']})> {cores['limpar']}''')
+                    login_smtp = input(f'''{cores['ciano']}login do smtp> {cores['limpar']}''')
+                    passwd_smtp = input(f'''{cores['ciano']}senha do smtp> {cores['limpar']}''')
+
+                    for email in emails:
+                        enviar_email(email, fake_remetente, title_email, path_body_email, server_smtp, login_smtp, passwd_smtp)
+
+                    print(f'''{cores['amarelo']}Voltando para o menu em 10 segundos!{cores['amarelo']}''')
+                    time.sleep(10)
+                    break
+
                 case 3: # HELP (precisa fazer ainda)
                     pass
                 case 99: # SAIR
-                    print('Saindo')
+                    print(f'''{cores['azul']}Já vai tão cedo? Que pena... Vejo o Sr(a) em breve certo?{cores['amarelo']} Até mais ;D{cores['limpar']}''')
                     sys.exit()
