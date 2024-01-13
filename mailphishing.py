@@ -9,13 +9,6 @@ import sys
 import os
 import time
 
-# from datetime import datetime
-
-##################################################################
-# Variáveis globais / Outros
-##################################################################
-
-
 ##################################################################
 # Cores
 ##################################################################
@@ -30,6 +23,48 @@ cores = {
     "ciano": "\033[1;36m",
     "cinza": "\033[1;34m",
 }
+
+##################################################################
+# Validação do concentimento !
+##################################################################
+os.system('clear')
+print(f'''
+{cores['vermelho']}
+___  ___      _ _  ______ _     _     _     _
+|  \/  |     (_) | | ___ \ |   (_)   | |   (_)
+| .  . | __ _ _| | | |_/ / |__  _ ___| |__  _ _ __   __ _
+| |\/| |/ _` | | | |  __/| '_ \| / __| '_ \| | '_ \ / _` |
+| |  | | (_| | | | | |   | | | | \__ \ | | | | | | | (_| |
+\_|  |_/\__,_|_|_| \_|   |_| |_|_|___/_| |_|_|_| |_|\__, |
+                                                     __/ |
+                   ___  _          __               |___/
+                  / _ \| |         | |
+                 / /_\ \ | ___ _ __| |_
+                 |  _  | |/ _ \ '__| __|
+                 | | | | |  __/ |  | |_
+                 \_| |_/_|\___|_|   \__|
+
+########################### ALERTA #################################
+# Esta ferramenta é destinada exclusivamente para fins educativos  #
+# e de conscientização sobre os perigos do phishing. O uso desta   #
+# ferramenta em ambientes não autorizados ou para atividades       #
+# maliciosas é estritamente proibido.                              #
+####################################################################
+#                                                                  #
+# Ao executar esta ferramenta, você concorda em usá-la de maneira  #
+# ética e responsável. Não nos responsabilizamos por qualquer uso  #
+# indevido ou ilegal desta ferramenta. Certifique-se de obter o    #
+# devido consentimento antes de realizar testes de conscientização.#
+#                                                                  #
+########################### ALERTA #################################''')
+consentimento = input(f'''{cores['azul']}Concorda? (sim ou nao)> {cores['limpar']}''')
+
+if consentimento == 'sim':
+    print(f'''{cores['amarelo']}Carregando...{cores['limpar']}''')
+    time.sleep(2)
+    pass
+else:
+    sys.exit()
 
 ##################################################################
 # Classes e Funções
@@ -101,12 +136,10 @@ def enviar_email(email_vitima, fake_remetente,title_email, path_body_email, serv
 ##################################################################
 if __name__ == "__main__":
 
-
-##################################################################
-# LOOP Principal
-##################################################################
+    #####################
+    # LOOP Principal
+    #####################
     while True:
-        # LOOP DO MENU
         while True:
             try:
                 menu()
@@ -114,7 +147,6 @@ if __name__ == "__main__":
                 break
             except:
                 pass
-        # LOOP DAS INTERAÇÔES
         while True:
             match entry:
                 case 1: # ALVO UNICO
