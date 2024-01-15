@@ -23,54 +23,87 @@ cores = {
     "ciano": "\033[1;36m",
     "cinza": "\033[1;34m",
 }
-
-##################################################################
-# Validação do concentimento !
-##################################################################
-os.system('clear')
-print(f'''
-{cores['vermelho']}
-___  ___      _ _  ______ _     _     _     _
-|  \/  |     (_) | | ___ \ |   (_)   | |   (_)
-| .  . | __ _ _| | | |_/ / |__  _ ___| |__  _ _ __   __ _
-| |\/| |/ _` | | | |  __/| '_ \| / __| '_ \| | '_ \ / _` |
-| |  | | (_| | | | | |   | | | | \__ \ | | | | | | | (_| |
-\_|  |_/\__,_|_|_| \_|   |_| |_|_|___/_| |_|_|_| |_|\__, |
-                                                     __/ |
-                   ___  _          __               |___/
-                  / _ \| |         | |
-                 / /_\ \ | ___ _ __| |_
-                 |  _  | |/ _ \ '__| __|
-                 | | | | |  __/ |  | |_
-                 \_| |_/_|\___|_|   \__|
-
-########################### ALERTA #################################
-# Esta ferramenta é destinada exclusivamente para fins educativos  #
-# e de conscientização sobre os perigos do phishing. O uso desta   #
-# ferramenta em ambientes não autorizados ou para atividades       #
-# maliciosas é estritamente proibido.                              #
-####################################################################
-#                                                                  #
-# Ao executar esta ferramenta, você concorda em usá-la de maneira  #
-# ética e responsável. Não nos responsabilizamos por qualquer uso  #
-# indevido ou ilegal desta ferramenta. Certifique-se de obter o    #
-# devido consentimento antes de realizar testes de conscientização.#
-#                                                                  #
-########################### ALERTA #################################''')
-consentimento = input(f'''{cores['azul']}Concorda? (sim ou nao)> {cores['limpar']}''')
-
-if consentimento == 'sim':
-    print(f'''{cores['amarelo']}Carregando...{cores['limpar']}''')
-    time.sleep(2)
-    pass
-else:
-    sys.exit()
-
 ##################################################################
 # Classes e Funções
-##################################################################
+##################################################################.
+def limpar_tela():
+    if 'linux' in sys.platform:
+        os.system('clear')
+    elif 'win' in sys.platform:
+        os.system('cls')
+
+def ajuda():
+    limpar_tela()
+    print(f'''{cores['vermelho']}
+  __  __       _ _ _____  _     _     _     _             
+ |  \/  |     (_) |  __ \| |   (_)   | |   (_)            
+ | \  / | __ _ _| | |__) | |__  _ ___| |__  _ _ __   __ _ 
+ | |\/| |/ _` | | |  ___/| '_ \| / __| '_ \| | '_ \ / _` |
+ | |  | | (_| | | | |    | | | | \__ \ | | | | | | | (_| |
+ \_|  |_/\__,_|_|_|_|    |_| |_|_|___/_| |_|_|_| |_|\__, |
+ {cores['azul']}           _    _      _     {cores['vermelho']}                       __/ |
+ {cores['azul']}          | |  | |    | |    {cores['vermelho']}                      |___/ 
+ {cores['azul']}          | |__| | ___| |_ __                            
+           |  __  |/ _ \ | '_ \                           
+           | |  | |  __/ | |_) |                          
+           |_|  |_|\___|_| .__/                           
+                         | |                              
+                         |_|                  {cores['limpar']}            
+O uso desse script é simples, porém alguns detalhes precisam de atenção.
+
+* O Corpo do email deve ser passado o caminho completo, o mesmo deve ser
+um arquivo {cores['vermelho']}txt{cores['limpar']}, porém sua escrita deve ser em {cores['amarelo']}HTML{cores['limpar']}.
+
+* Se foi selecionado "Múltiplos Alvos", alem do corpo do email, terá que 
+ser passado o {cores['vermelho']}caminho{cores['limpar']} da lista dos alvos, essa lista deve ser um arquivo
+{cores['vermelho']}txt{cores['limpar']} onde  os emails devem estar separados por {cores['amarelo']}';' (ponto e vírgula){cores['limpar']}.
+
+* Na parte do servidor SMTP, deve ser passado junto a porta de conexão junto,
+Ex: {cores['azul']}mail.servidorsmtp.com{cores['amarelo']}:{cores['vermelho']}587{cores['limpar']}
+''')
+
+def aviso():
+    limpar_tela()
+    print(f'''
+    {cores['vermelho']}
+    ___  ___      _ _  ______ _     _     _     _
+    |  \/  |     (_) | | ___ \ |   (_)   | |   (_)
+    | .  . | __ _ _| | | |_/ / |__  _ ___| |__  _ _ __   __ _
+    | |\/| |/ _` | | | |  __/| '_ \| / __| '_ \| | '_ \ / _` |
+    | |  | | (_| | | | | |   | | | | \__ \ | | | | | | | (_| |
+    \_|  |_/\__,_|_|_| \_|   |_| |_|_|___/_| |_|_|_| |_|\__, |
+                                                         __/ |
+                       ___  _          __               |___/
+                      / _ \| |         | |
+                     / /_\ \ | ___ _ __| |_
+                     |  _  | |/ _ \ '__| __|
+                     | | | | |  __/ |  | |_
+                     \_| |_/_|\___|_|   \__|
+
+    ########################### ALERTA #################################
+    # Esta ferramenta é destinada exclusivamente para fins educativos  #
+    # e de conscientização sobre os perigos do phishing. O uso desta   #
+    # ferramenta em ambientes não autorizados ou para atividades       #
+    # maliciosas é estritamente proibido.                              #
+    ####################################################################
+    #                                                                  #
+    # Ao executar esta ferramenta, você concorda em usá-la de maneira  #
+    # ética e responsável. Não nos responsabilizamos por qualquer uso  #
+    # indevido ou ilegal desta ferramenta. Certifique-se de obter o    #
+    # devido consentimento antes de realizar testes de conscientização.#
+    #                                                                  #
+    ########################### ALERTA #################################''')
+    consentimento = input(f'''{cores['azul']}Concorda? (sim ou nao)> {cores['limpar']}''')
+
+    if consentimento == 'sim':
+        print(f'''{cores['amarelo']}Carregando...{cores['limpar']}''')
+        time.sleep(1)
+        pass
+    else:
+        sys.exit()
+
 def menu():
-    os.system('clear')
+    limpar_tela()
     print(f'''{cores['azul']}
 888b     d888          d8b 888
 8888b   d8888          Y8P 888
@@ -98,8 +131,6 @@ Select from the menu:
     3) Help
    99) Sair
 ''')
-
-
 
 def enviar_email(email_vitima, fake_remetente,title_email, path_body_email, server_smtp, login_smtp, passwd_smtp):
     print(f'''{cores['azul']}Enviando phishing para a vítima {email_vitima} aguarde...{cores['limpar']}''')
@@ -135,6 +166,7 @@ def enviar_email(email_vitima, fake_remetente,title_email, path_body_email, serv
 # Main / Principal
 ##################################################################
 if __name__ == "__main__":
+    aviso()
 
     #####################
     # LOOP Principal
@@ -183,8 +215,16 @@ if __name__ == "__main__":
                     time.sleep(10)
                     break
 
-                case 3: # HELP (precisa fazer ainda)
-                    pass
+                case 3: # HELP
+                    while True:
+                        ajuda()
+                        entry = input(f'''{cores['ciano']}Voltar para o Menu Principal? (sim)> {cores['limpar']}''')
+                        if entry == 'sim':
+                            break
+                        else:
+                            pass
+                    break
+
                 case 99: # SAIR
                     print(f'''{cores['azul']}Já vai tão cedo? Que pena... Vejo o Sr(a) em breve certo?{cores['amarelo']} Até mais ;D{cores['limpar']}''')
                     sys.exit()
