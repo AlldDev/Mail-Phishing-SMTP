@@ -54,7 +54,7 @@ Este manual destina-se a orientar os usuários sobre a utilização ética e res
 
     1) Alvo Único: Envio simulado de e-mail de phishing para um único endereço.
     2) Múltiplos Alvos: Envio simulado de e-mails de phishing para uma lista de endereços.
-    3) Ajuda: Exibição de informações sobre boas práticas de segurança cibernética (ainda a ser implementado).
+    3) Ajuda: Exibição de informações adicionais sobre a ferramenta.
     99) Sair: Encerrar a execução da ferramenta.
 
 ### Instruções para Uso Ético
