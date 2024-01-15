@@ -62,6 +62,10 @@ Este manual destina-se a orientar os usuários sobre a utilização ética e res
 #### Escolha do Alvo:
 > Ao selecionar a opção 1 ou 2, forneça as informações solicitadas, como endereços de e-mail, remetente falso, título do e-mail e caminho da mensagem.
 
+> OBS: A lista de EMAILS tem que estar em .txt, e os emails separados por ';' (ponto e vírgula).
+
+> OBS: A mensagem a ser enviada tem que estar em um arquivo .txt, porem a sua escrita tem que ser em html.
+
 #### Configuração do SMTP:
 > Informe o servidor SMTP, login e senha quando solicitado. Certifique-se de que essas informações são válidas e que você tem permissão para usar o servidor SMTP fornecido.
 
